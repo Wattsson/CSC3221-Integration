@@ -10,17 +10,16 @@ function HandleError(response, reason, message, code){
     response.status(code || 500).json({"error:": message});
 }
 
-router.post('/api/books', (request, response, next) => {
+router.post('/', (request, response, next) => {
     let newBook = request.body;
     if (!newBook.bookName || !newBook.bookAuthor || !newBook.bookISBN || !newBook.bookPrice){
         HandleError(response, 'Missing Info', 'Form data missing', 500);
-    } else{
+    }else{
         let book = new BookSchema({
             bookName: newBook.bookName,
             bookAuthor: newBook.bookAuthor,
             bookISBN: newBook.bookISBN,
             bookPrice: newBook.bookPrice
-
         });
         book.save((error) => {
             if (error){
@@ -32,23 +31,11 @@ router.post('/api/books', (request, response, next) => {
     }
 });
 
-router.get('/api/books', (request, response, next) => {
-    BookSchema
-        .find()
-        .exec( (error, books) => {
-            if (error){
-                response.send( {"error": error});
-            } else{
-                response.send(books);
-            }
-        });
-});
-
-router.get('/api/books/?author=name', (request, response, next) => {
-    let name = request.query['name'];
-    if (name) {
+router.get('/', (request, response, next) => {
+    let author = request.query['author'];
+    if (author){
         BookSchema
-            .find({"bookAuthor": name})
+            .find({"bookAuthor": author})
             .exec((error, books) => {
                 if (error) {
                     response.send({"error": error});
@@ -70,24 +57,23 @@ router.get('/api/books/?author=name', (request, response, next) => {
 });
 
 
-router.get('/api/books/:isbn', (request, response, next) => {
+router.get('/:isbn', (request, response, next) =>{
     BookSchema
-        .findOne({"isbn": request.params.isbn}, (error, result) => {
+        .findOne({"bookISBN": request.params.isbn}, (error, result) =>{
             if (error) {
                 response.status(500).send(error);
             }
-            if (result) {
+            if (result){
                 response.send(result);
-            } else {
-                response.status(404).send({"id": request.params.id, "error": "Not Found"});
+            }else{
+                response.status(404).send({"isbn": request.params.isbn, "error":  "Not Found"});
             }
-
         });
 });
 
-router.patch('/api/books/:isbn', (request, response, next) => {
+router.patch('/:isbn', (request, response, next) => {
     BookSchema
-        .findOne(request.params.isbn, (error, result)=>{
+        .findOne({"bookISBN": request.params.isbn}, (error, result)=>{
             if (error) {
                 response.status(500).send(error);
             }else if (result){
@@ -109,9 +95,9 @@ router.patch('/api/books/:isbn', (request, response, next) => {
         });
 });
 
-router.delete('/api/books/:isbn', (request, response, next) => {
+router.delete('/:isbn', (request, response, next) =>{
     BookSchema
-        .findOne(request.params.isbn, (error, result)=>{
+        .findOne({"bookISBN": request.params.isbn}, (error, result)=>{
             if (error) {
                 response.status(500).send(error);
             }else if (result){
@@ -119,10 +105,10 @@ router.delete('/api/books/:isbn', (request, response, next) => {
                     if (error){
                         response.status(500).send(error);
                     }
-                    response.send({"deletedISBN": request.params.isbn});
+                    response.send({"deletedId": request.params.isbn});
                 });
             }else{
-                response.status(404).send({"isbn": request.params.isbn, "error":  "Not Found"});
+                response.status(404).send({"id": request.params.isbn, "error":  "Not Found"});
             }
         });
 });
