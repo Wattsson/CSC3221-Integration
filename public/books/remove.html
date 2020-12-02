@@ -43,6 +43,69 @@
         </ul>
     </div>
 </nav>
-<h1></h1>
+    <h1>Remove a Book</h1>
+    <p>Search for the book by the ISBN:</p>
+    <input class="form-control" type="text" placeholder="ISBN" id="isbn">
+    <br>
+    <div class="text-center">
+        <button type="button" id="searchBtn" class="btn btn-primary btn-sm">Search</button>
+    </div>
+    <br><br>
+    <div id="output"></div>
+    <div class="text-center">
+        <button type="button" class="btn btn-primary btn-sm" id="deleteBtn">Delete</button>
+        <button type="button" class="btn btn-secondary btn-sm" id="cancelBtn">Cancel</button>
+    </div>
+
+    <script>
+        function CreateTable(data){
+            let table = "";
+            table =
+                '<table class="table table-bordered table-hover"> \n' +
+                '   <thead>\n' +
+                '       <tr>\n' +
+                '           <th scope="col">Book Name</th> \n'+
+                '           <th scope="col">Author Name</th> \n'+
+                '           <th scope="col">Book ISBN</th> \n'+
+                '           <th scope="col">Price</th> \n'+
+                '       </tr>\n' +
+                '   </thead>\n' +
+                '   <tbody>\n';
+
+            for (let book in data){
+                table +=
+                    '       <tr>\n' +
+                    '           <td>' + data[book]["bookName"]+  '</td>\n' +
+                    '           <td>' + data[book]["bookAuthor"]+  '</td>\n' +
+                    '           <td>' + data[book]["bookISBN"]+  '</td>\n' +
+                    '           <td>' + data[book]["bookPrice"]+  '</td>\n' +
+                    '       </tr>\n';
+            }
+
+            table +=
+                '   </tbody>\n' +
+                '</table>\n'
+            return table;
+        }
+
+        document.getElementById("searchBtn").addEventListener("click", (event) => {
+            let bookISBN = document.getElementById("isbn").value;
+            console.log(bookISBN);
+            let url = "https://shielded-everglades-51503.herokuapp.com/api/books/" + bookISBN
+            let xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function (){
+                if (this.readyState == 4 && this.status == 200){
+                    document.getElementById("output").innerHTML =
+                        CreateTable(JSON.parse(this.responseText));
+                }
+                xhttp.open('GET', url, true);
+                xhttp.send();
+            };
+            if(document.getElementById("deleteBtn").checked){
+                xhttp.open('DELETE', url, true);
+                xhttp.send();
+            }
+        });
+    </script>
 </body>
 </html>
