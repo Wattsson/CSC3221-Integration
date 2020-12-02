@@ -14,8 +14,13 @@ h1 {
   padding-top: 45px;
   padding-bottom: 25px;
   font-size: 75px;
+  text-decoration: underline;
 }
 
 input{
   padding-bottom: 50px;
+}
+
+input[type="radio"]{
+  padding-left: 50px;
 }

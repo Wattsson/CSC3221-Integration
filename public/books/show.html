@@ -43,13 +43,12 @@
         </ul>
     </div>
 </nav>
-    <h1 style="text-decoration: underline">Book List</h1>
+    <h1>Book List</h1>
     <div style="text-align: center">
         <button class="btn-primary btn-lg" id="showBtn">Show Books</button>
     </div>
     <br>
     <div class="jumbotron" id="output"></div>
-
     <script>
         function CreateTable(data){
             let table = "";
@@ -82,7 +81,7 @@
         }
 
         document.getElementById("showBtn").addEventListener("click", (event) =>{
-            let url = "https://shielded-everglades-51503.herokuapp.com/api/books/"
+            let url = "https://shielded-everglades-51503.herokuapp.com/api/books"
             let xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function (){
                 if (this.readyState == 4 && this.status == 200){
