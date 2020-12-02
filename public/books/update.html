@@ -52,9 +52,9 @@
     </div>
     <br><br>
     <div id="output"></div>
+    <br>
     <div class="text-center">
-        <button type="button" class="btn btn-primary btn-sm" id="deleteBtn">Delete</button>
-        <button type="button" class="btn btn-secondary btn-sm" id="cancelBtn">Cancel</button>
+        <button type="button" class="btn btn-primary btn-sm" id="updateBtn">Update</button>
     </div>
 
     <script>
@@ -87,10 +87,60 @@
                 '</table>\n'
             return table;
         }
+        function CreateForm(data){
+            let form = "";
+            form =
+                '<form>\n';
+
+            for (let book in data){
+                form +=
+                    '<div class="form-row"> \n' +
+                    '    <div class="col">\n' +
+                    '        <label for="bookName">Name</label>\n' +
+                    '        <input type="text" name="bookName" id="bookName" class="form-control" placeholder=' + data[book]["bookName"] + '>\n' +
+                    '    </div>\n' +
+                    '    <div class="col">\n' +
+                    '        <label for="bookAuthor">Author</label>\n' +
+                    '        <input type="text" name="bookAuthor" id="bookAuthor" class="form-control" placeholder=' + data[book]["bookAuthor"] + '>\n' +
+                    '    </div>\n' +
+                    '</div>\n' +
+                    '<br><br>\n' +
+                    '<div class="form-row">\n' +
+                    '    <div class="col">\n' +
+                    '        <label for="bookISBN">ISBN</label>\n' +
+                    '        <input type="text" name="bookISBN" id="bookISBN" class="form-control" placeholder=' + data[book]["bookISBN"] + '>\n' +
+                    '    </div>\n' +
+                    '    <div class="col">\n' +
+                    '        <label for="bookPrice">Price</label>\n' +
+                    '        <input type="text" name="bookPrice" id="bookPrice" class="form-control" placeholder=' + data[book]["bookName"] + '>\n' +
+                    '    </div>\n' +
+                    '</div>\n';
+            }
+            form +=
+                '</form>\n';
+            return form;
+        }
 
         document.getElementById("searchBtn").addEventListener("click", (event) => {
             let bookISBN = document.getElementById("isbn").value;
+            console.log(bookISBN);
             let url = "https://shielded-everglades-51503.herokuapp.com/api/books/" + bookISBN
+            console.log(url);
+            let xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function (){
+                if (this.readyState == 4 && this.status == 200){
+                    document.getElementById("output").innerHTML =
+                        CreateForm(JSON.parse(this.responseText));
+                }
+            };
+            xhttp.open('GET', url, true);
+            xhttp.send();
+        });
+        document.getElementById("updateBtn").addEventListener("click", (event) => {
+            let bookISBN = document.getElementById("isbn").value;
+            console.log(bookISBN);
+            let url = "https://shielded-everglades-51503.herokuapp.com/api/books/" + bookISBN
+            console.log(url);
             let xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function (){
                 if (this.readyState == 4 && this.status == 200){

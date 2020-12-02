@@ -117,7 +117,9 @@
                 xhttp.send();
             } else if(document.getElementById("isbnBtn").checked){
                 let bookISBN = document.getElementById("isbn").value;
+                console.log(bookISBN);
                 let url = "https://shielded-everglades-51503.herokuapp.com/api/books/" + bookISBN
+                console.log(url);
                 let xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function (){
                     if (this.readyState == 4 && this.status == 200){
