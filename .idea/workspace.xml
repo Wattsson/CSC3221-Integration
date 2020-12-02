@@ -11,9 +11,6 @@
   <component name="ChangeListManager">
     <list default="true" id="0f57cb23-e2ac-4d20-b951-e47d0697d1cc" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/books/find.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/books/find.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/books/remove.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/books/remove.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/books/update.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/books/update.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +80,7 @@
       <option name="presentableId" value="Default" />
       <updated>1606677031573</updated>
       <workItem from="1606677032681" duration="37545000" />
-      <workItem from="1606722860786" duration="24134000" />
+      <workItem from="1606722860786" duration="25009000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1606678570259</created>
@@ -224,10 +221,10 @@
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="0" y="96" key="Vcs.Push.Dialog.v2/0.0.1280.720@0.0.1280.720" timestamp="1606883665025" />
-    <state x="0" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1606891420302">
+    <state x="0" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1606891647226">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="0" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1280.720@0.0.1280.720" timestamp="1606891420302" />
+    <state x="0" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1280.720@0.0.1280.720" timestamp="1606891647226" />
     <state x="43" y="0" width="1251" height="707" key="dock-window-1" timestamp="1606879333851">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
